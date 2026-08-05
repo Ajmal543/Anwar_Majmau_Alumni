@@ -26,7 +26,9 @@ venv.bak/
 *.swp
 *.swo
 
-# OS files
+# OS files & Archives
 Thumbs.db
 Desktop.ini
 .DS_Store
+*.rar
+*.zip
