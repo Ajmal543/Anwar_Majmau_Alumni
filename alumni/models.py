@@ -4,7 +4,7 @@ from django.db import models
 from django.utils.text import slugify
 
 class Student(models.Model):
-    serial_number = models.CharField(max_length=50, unique=True, db_index=True, help_text="Unique Serial Number (e.g. ANWAR-2024-001)")
+    serial_number = models.CharField(max_length=50, unique=True, db_index=True, help_text="Unique Serial Number (e.g. ANWAR001)")
     name = models.CharField(max_length=150)
     batch = models.CharField(max_length=50, help_text="e.g. 2018-2021 or Batch 12")
     photo = models.ImageField(upload_to='students/photos/', blank=True, null=True)

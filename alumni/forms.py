@@ -7,7 +7,7 @@ class StudentSearchForm(forms.Form):
         required=True,
         widget=forms.TextInput(attrs={
             'class': 'form-control form-control-lg text-center font-monospace shadow-sm',
-            'placeholder': 'Enter Serial Number (e.g. ANWAR-2024-001)',
+            'placeholder': 'Enter Serial Number (e.g. ANWAR001)',
             'autocomplete': 'off',
             'id': 'studentSearchInput'
         })

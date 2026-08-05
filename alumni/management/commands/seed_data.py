@@ -20,35 +20,35 @@ class Command(BaseCommand):
         # 2. Seed Students
         sample_students = [
             {
-                'serial_number': 'ANWAR-2024-001',
+                'serial_number': 'ANWAR001',
                 'name': 'Muhammad Shafiq',
                 'batch': '2020-2024',
                 'phone_number': '+91 98471 23456',
                 'address': 'Green Valley, Nilambur, Malappuram, Kerala - 679329',
             },
             {
-                'serial_number': 'ANWAR-2024-002',
+                'serial_number': 'ANWAR002',
                 'name': 'Abdul Rahman Al-Qasimi',
                 'batch': '2020-2024',
                 'phone_number': '+91 98472 34567',
                 'address': 'Vidyanagar Road, Nilambur, Kerala - 679329',
             },
             {
-                'serial_number': 'ANWAR-2023-015',
+                'serial_number': 'ANWAR003',
                 'name': 'Usman Farooq',
                 'batch': '2019-2023',
                 'phone_number': '+91 98473 45678',
                 'address': 'Town Hall Junction, Manjeri, Malappuram, Kerala',
             },
             {
-                'serial_number': 'ANWAR-2022-008',
+                'serial_number': 'ANWAR004',
                 'name': 'Bilal Ahmed Wafa',
                 'batch': '2018-2022',
                 'phone_number': '+91 98474 56789',
                 'address': 'Al-Huda Villa, Calicut Road, Kozhikode, Kerala',
             },
             {
-                'serial_number': 'ANWAR-2021-042',
+                'serial_number': 'ANWAR005',
                 'name': 'Zaid ibn Thabit',
                 'batch': '2017-2021',
                 'phone_number': '+91 98475 67890',
