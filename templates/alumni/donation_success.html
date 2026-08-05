@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donation Successful | Anwar Alumni Network{% endblock %}
+
+{% block content %}
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="card border-2 border-warning shadow-lg rounded-4 overflow-hidden text-center">
+                    <div class="card-header bg-success text-white p-4">
+                        <div class="mb-2">
+                            <i class="bi bi-check-circle-fill display-3 text-warning"></i>
+                        </div>
+                        <h2 class="fw-bold mb-1" style="font-family: 'Poppins', sans-serif;">Donation Received!</h2>
+                        <p class="mb-0 text-white-50">Jazakallahu Khair for your generous support</p>
+                    </div>
+                    
+                    <div class="card-body p-4 p-md-5 bg-white">
+                        <div class="badge bg-warning text-dark font-monospace fs-6 px-3 py-2 mb-4">
+                            Receipt No: {{ donation.receipt_number }}
+                        </div>
+                        
+                        <div class="table-responsive mb-4 text-start">
+                            <table class="table table-bordered align-middle">
+                                <tbody>
+                                    <tr>
+                                        <th class="bg-light w-40">Donor Name</th>
+                                        <td class="fw-bold text-success">{{ donation.donor_name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Batch</th>
+                                        <td>{{ donation.batch }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Amount Paid</th>
+                                        <td class="fw-bold fs-5 text-success">₹ {{ donation.amount|floatformat:2 }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Transaction ID</th>
+                                        <td class="font-monospace">{{ donation.transaction_id|default:"N/A" }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th class="bg-light">Date</th>
+                                        <td>{{ donation.date|date:"d M Y, h:i A" }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                            <a href="{% url 'download_receipt' donation.id %}" class="btn btn-gold btn-lg shadow-sm" download>
+                                <i class="bi bi-file-earmark-pdf-fill me-2"></i> Download PDF Receipt Now
+                            </a>
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary btn-lg">
+                                <i class="bi bi-house-door me-1"></i> Return to Home
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

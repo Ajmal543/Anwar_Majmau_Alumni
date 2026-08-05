@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Bulk Import Students | Anwar Alumni Network{% endblock %}
+
+{% block content %}
+<section class="islamic-pattern-bg py-4 text-white text-center">
+    <div class="container">
+        <h2 class="text-warning mb-1" style="font-family: 'Poppins', sans-serif;"><i class="bi bi-file-earmark-arrow-up me-2"></i>Bulk Import Students from Excel</h2>
+        <p class="mb-0 text-white-50">Upload Excel spreadsheet (.xlsx) to create or update student records</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-header bg-success text-white py-3">
+                        <h5 class="mb-0 fw-bold"><i class="bi bi-upload me-2"></i>Upload Student Spreadsheet</h5>
+                    </div>
+                    <div class="card-body p-4 p-md-5 bg-white">
+                        <div class="alert alert-info small mb-4">
+                            <h6 class="fw-bold mb-1"><i class="bi bi-info-circle me-1"></i>Excel Format Instructions:</h6>
+                            <p class="mb-1">Ensure your Excel columns are ordered as follows:</p>
+                            <ol class="mb-0 ps-3">
+                                <li><strong>Serial Number</strong> (Unique, e.g., <code>ANWAR-2024-001</code>)</li>
+                                <li><strong>Student Name</strong></li>
+                                <li><strong>Batch</strong></li>
+                                <li><strong>Phone Number</strong></li>
+                                <li><strong>Address</strong></li>
+                            </ol>
+                        </div>
+
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <div class="mb-4">
+                                <label class="form-label fw-bold">Select Excel File (.xlsx)</label>
+                                {{ form.excel_file }}
+                            </div>
+
+                            <button type="submit" class="btn btn-gold btn-lg w-100 fw-bold shadow-sm">
+                                <i class="bi bi-cloud-upload-fill me-2"></i> Upload & Process Students
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

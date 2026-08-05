@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Donate | Anwar Alumni Network{% endblock %}
+
+{% block content %}
+<!-- BANNER -->
+<section class="islamic-pattern-bg py-5 text-white text-center">
+    <div class="container">
+        <h1 class="text-warning mb-2" style="font-family: 'Poppins', sans-serif;"><i class="bi bi-heart-fill me-2"></i>Support Our Institution</h1>
+        <p class="lead mb-0 text-white-50">Empower students and campus initiatives with your valuable contribution</p>
+    </div>
+</section>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row g-5">
+            <!-- LEFT COLUMN: BANK DETAILS & QR CODE -->
+            <div class="col-lg-5">
+                <div class="bank-details-card shadow-sm h-100 border-2 border-warning">
+                    <div class="text-center mb-4">
+                        <span class="badge bg-warning text-dark px-3 py-2 fw-bold text-uppercase mb-2">Scan & Pay</span>
+                        <h4 class="fw-bold text-success" style="font-family: 'Poppins', sans-serif;">Bank QR Code</h4>
+                        
+                        <!-- Generated QR Code Image SVG placeholder -->
+                        <div class="my-3">
+                            <svg class="qr-code-img bg-white p-3 shadow-sm" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+                                <rect width="200" height="200" fill="#ffffff" />
+                                <path d="M10 10h60v60H10zM130 10h60v60h-60zM10 130h60v60H10z" fill="#064E3B"/>
+                                <path d="M20 20h40v40H20zM140 20h40v40h-40zM20 140h40v40H20z" fill="#ffffff"/>
+                                <path d="M30 30h20v20H30zM150 30h20v20h-20zM30 150h20v20H30z" fill="#D4AF37"/>
+                                <path d="M80 10h10v30H80zM100 10h20v10h-20zM80 50h30v10H80zM10 80h30v10H10zM50 80h40v10H50zM100 80h30v20h-30zM140 80h50v10h-50zM10 100h20v40H10zM40 100h30v20H40zM80 110h20v30H80zM110 110h20v10h-20zM140 100h20v30h-20zM170 100h20v50h-20zM80 150h20v40H80zM110 130h30v20h-30zM150 140h20v50h-20zM110 160h30v30h-30z" fill="#064E3B"/>
+                            </svg>
+                        </div>
+                        <small class="text-muted d-block"><i class="bi bi-qr-code-scan me-1"></i> Scan with GPay, PhonePe, Paytm, or any UPI App</small>
+                    </div>
+                    
+                    <hr class="my-4 border-warning opacity-50">
+                    
+                    <h5 class="fw-bold text-success mb-3"><i class="bi bi-bank2 me-2"></i>Official Bank Details</h5>
+                    
+                    <div class="mb-3 p-3 bg-white rounded-3 border">
+                        <div class="small text-muted text-uppercase fw-bold">Account Name</div>
+                        <div class="fw-bold text-success fs-6">{{ bank_details.account_name }}</div>
+                    </div>
+                    
+                    <div class="mb-3 p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="small text-muted text-uppercase fw-bold">Account Number</div>
+                            <div class="fw-bold text-dark font-monospace fs-5" id="bankAccNo">{{ bank_details.account_number }}</div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-success copy-btn" data-copy-target="bankAccNo">
+                            <i class="bi bi-clipboard"></i> Copy
+                        </button>
+                    </div>
+                    
+                    <div class="mb-3 p-3 bg-white rounded-3 border d-flex justify-content-between align-items-center">
+                        <div>
+                            <div class="small text-muted text-uppercase fw-bold">IFSC Code</div>
+                            <div class="fw-bold text-dark font-monospace fs-6" id="bankIfsc">{{ bank_details.ifsc_code }}</div>
+                        </div>
+                        <button type="button" class="btn btn-sm btn-outline-success copy-btn" data-copy-target="bankIfsc">
+                            <i class="bi bi-clipboard"></i> Copy
+                        </button>
+                    </div>
+                    
+                    <div class="p-3 bg-white rounded-3 border">
+                        <div class="small text-muted text-uppercase fw-bold">Branch Name</div>
+                        <div class="fw-bold text-dark fs-6">{{ bank_details.branch_name }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- RIGHT COLUMN: DONATION FORM -->
+            <div class="col-lg-7">
+                <div class="card border-0 shadow-lg rounded-4 overflow-hidden">
+                    <div class="card-header bg-success text-white py-3 border-bottom border-3 border-warning">
+                        <h4 class="mb-0 fw-bold" style="font-family: 'Poppins', sans-serif;">
+                            <i class="bi bi-heart-pulse-fill text-warning me-2"></i>Donation Details Form
+                        </h4>
+                    </div>
+                    <div class="card-body p-4 p-md-5 bg-white">
+                        <p class="text-secondary mb-4">
+                            Please fill out the form below after completing your transfer to generate your official PDF receipt instantly.
+                        </p>
+
+                        <form method="POST" enctype="multipart/form-data" class="needs-validation">
+                            {% csrf_token %}
+                            
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-dark">Full Name <span class="text-danger">*</span></label>
+                                    {{ form.donor_name }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-dark">Batch / Year <span class="text-danger">*</span></label>
+                                    {{ form.batch }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-dark">Phone Number <span class="text-danger">*</span></label>
+                                    {{ form.phone_number }}
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label fw-bold text-dark">Amount (₹) <span class="text-danger">*</span></label>
+                                    {{ form.amount }}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold text-dark">Transaction ID / UTR Number <small class="text-muted">(Optional)</small></label>
+                                    {{ form.transaction_id }}
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label fw-bold text-dark">Payment Screenshot <small class="text-muted">(Optional)</small></label>
+                                    {{ form.payment_screenshot }}
+                                </div>
+                            </div>
+
+                            <div class="mt-4 pt-2">
+                                <button type="submit" class="btn btn-gold btn-lg w-100 shadow-sm fw-bold">
+                                    <i class="bi bi-receipt-cutoff me-2"></i> Submit Donation & Download PDF Receipt
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

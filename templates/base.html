@@ -1,0 +1,200 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Anwar Alumni Network | Anwar Majmau Shariath & Dawa College{% endblock %}</title>
+    <meta name="description" content="Official Alumni Portal of Anwar Majmau Shariath & Dawa College, Vidyanagar, Nilambur, Malappuram, Kerala. Connect, donate, search alumni, and view network updates.">
+    <meta name="keywords" content="Anwar Alumni Network, Anwar Majmau Nilambur, Malappuram Alumni, Shariath College Alumni, Dawa College Nilambur">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Poppins:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CSS & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    
+    <!-- Custom Style System -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="top-bar">
+        <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div>
+                <i class="bi bi-geo-alt-fill text-warning me-1"></i> {{ SITE_LOCATION }}
+                <span class="mx-2 opacity-50">|</span>
+                <i class="bi bi-telephone-fill text-warning me-1"></i> <a href="tel:+918606140996">{{ SITE_PHONE }}</a>
+            </div>
+            <div class="d-none d-md-flex align-items-center gap-3">
+                <a href="mailto:{{ SITE_EMAIL }}"><i class="bi bi-envelope-fill text-warning me-1"></i> {{ SITE_EMAIL }}</a>
+                <span class="opacity-50">|</span>
+                <a href="https://instagram.com" target="_blank" class="text-white me-2" title="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://facebook.com" target="_blank" class="text-white" title="Facebook"><i class="bi bi-facebook"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-custom sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <div class="brand-logo-icon">
+                    <i class="bi bi-mortarboard-fill"></i>
+                </div>
+                <div>
+                    <div>Anwar Alumni Network</div>
+                    <div style="font-size: 0.65rem; font-family: 'Poppins', sans-serif; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-gold);">
+                        Anwar Majmau Nilambur
+                    </div>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain" aria-controls="navbarMain" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarMain">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}" href="{% url 'home' %}">
+                            <i class="bi bi-house-door me-1"></i> Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}" href="{% url 'about' %}">
+                            <i class="bi bi-info-circle me-1"></i> About Us
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'student_search' %}active{% endif %}" href="{% url 'student_search' %}">
+                            <i class="bi bi-search me-1"></i> Students Login
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'gallery' %}active{% endif %}" href="{% url 'gallery' %}">
+                            <i class="bi bi-images me-1"></i> Gallery
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}" href="{% url 'contact' %}">
+                            <i class="bi bi-telephone me-1"></i> Contact
+                        </a>
+                    </li>
+                    <li class="nav-item ms-lg-2 mt-2 mt-lg-0">
+                        <a href="{% url 'donate' %}" class="btn btn-gold text-white shadow-sm">
+                            <i class="bi bi-heart-fill me-1"></i> Donate Now
+                        </a>
+                    </li>
+                    {% if user.is_staff %}
+                    <li class="nav-item ms-lg-2">
+                        <a href="{% url 'admin_dashboard' %}" class="btn btn-emerald btn-sm">
+                            <i class="bi bi-speedometer2"></i> Admin Panel
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FLASH MESSAGES -->
+    {% if messages %}
+    <div class="container mt-3">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags|default:'info' }} alert-dismissible fade show shadow-sm" role="alert">
+            {% if message.tags == 'success' %}<i class="bi bi-check-circle-fill me-2"></i>{% endif %}
+            {% if message.tags == 'warning' %}<i class="bi bi-exclamation-triangle-fill me-2"></i>{% endif %}
+            {% if message.tags == 'danger' %}<i class="bi bi-x-circle-fill me-2"></i>{% endif %}
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- MAIN CONTENT BLOCK -->
+    {% block content %}{% endblock %}
+
+    <!-- FLOATING WHATSAPP BUTTON -->
+    <a href="https://wa.me/918606140996?text=Assalamu%20Alaikum,%20I%20want%20to%20connect%20with%20Anwar%20Alumni%20Network" 
+       class="whatsapp-float" 
+       target="_blank" 
+       title="Chat on WhatsApp">
+        <i class="bi bi-whatsapp"></i>
+    </a>
+
+    <!-- FOOTER -->
+    <footer class="footer-main">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Col 1: About Institution -->
+                <div class="col-lg-4 col-md-6">
+                    <h5 class="footer-heading">Anwar Alumni Network</h5>
+                    <p class="small text-white-50 mb-3">
+                        Official Alumni Management Portal of <b>Anwar Majmau Shariath & Dawa College</b>, Vidyanagar, Nilambur. Empowering students, preserving institutional legacy, and uniting global alumni.
+                    </p>
+                    <div>
+                        <a href="https://instagram.com" target="_blank" class="social-icon-btn" title="Instagram - Anwar Majmau Nilambur"><i class="bi bi-instagram"></i></a>
+                        <a href="https://facebook.com" target="_blank" class="social-icon-btn" title="Facebook - Anwar Majmau Nilambur"><i class="bi bi-facebook"></i></a>
+                        <a href="https://wa.me/918606140996" target="_blank" class="social-icon-btn" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Col 2: Quick Links -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'home' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> Home</a></li>
+                        <li><a href="{% url 'about' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> About Us</a></li>
+                        <li><a href="{% url 'student_search' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> Students Login</a></li>
+                        <li><a href="{% url 'donate' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> Donate</a></li>
+                        <li><a href="{% url 'gallery' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> Gallery</a></li>
+                        <li><a href="{% url 'contact' %}"><i class="bi bi-chevron-right me-1 text-warning"></i> Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 3: Contact Information -->
+                <div class="col-lg-5 col-md-12">
+                    <h5 class="footer-heading">Contact Details</h5>
+                    <ul class="list-unstyled small text-white-50">
+                        <li class="mb-2 d-flex gap-2">
+                            <i class="bi bi-geo-alt-fill text-warning fs-5"></i>
+                            <div>
+                                <strong>Anwar Majmau Shariath & Dawa College Alumni</strong><br>
+                                Vidyanagar, Nilambur, Malappuram, Kerala, India
+                            </div>
+                        </li>
+                        <li class="mb-2 d-flex gap-2 align-items-center">
+                            <i class="bi bi-telephone-fill text-warning fs-5"></i>
+                            <div>Phone: <strong>+91 8606 140 996</strong></div>
+                        </li>
+                        <li class="mb-2 d-flex gap-2 align-items-center">
+                            <i class="bi bi-envelope-fill text-warning fs-5"></i>
+                            <div>Email: <strong>anwarmajmau01@gmail.com</strong></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom text-center">
+                <p class="mb-0 text-white-50">
+                    Copyright © 2026 <strong>Anwar Alumni Network</strong>. All Rights Reserved. | 
+                    Designed for Anwar Majmau Nilambur
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Main JS -->
+    <script src="{% static 'js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

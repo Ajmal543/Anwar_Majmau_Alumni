@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- HERO BANNER -->
+<section class="hero-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-7 text-center text-lg-start">
+                <div class="hero-badge animate-fade-in">
+                    <i class="bi bi-star-fill text-warning"></i> Anwar Majmau Shariath & Dawa College Alumni
+                </div>
+                <h1 class="hero-title animate-fade-in">
+                    Welcome to <span class="gold-gradient-text">Anwar Alumni</span> Network
+                </h1>
+                <p class="hero-desc animate-fade-in">
+                    Uniting generations of scholars, graduates, and leaders. Reconnect with fellow alumni, support institution initiatives, and stay updated with campus announcements.
+                </p>
+                <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start animate-fade-in">
+                    <a href="{% url 'student_search' %}" class="btn btn-gold btn-lg">
+                        <i class="bi bi-person-bounding-box me-1"></i> Student Search
+                    </a>
+                    <a href="{% url 'donate' %}" class="btn btn-emerald btn-lg">
+                        <i class="bi bi-heart-fill me-1 text-warning"></i> Donate Now
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Search Card in Hero -->
+            <div class="col-lg-5">
+                <div class="hero-search-card shadow-lg">
+                    <div class="text-center mb-3">
+                        <h4 class="mb-1 fw-bold text-success" style="font-family: 'Poppins', sans-serif;">
+                            <i class="bi bi-search me-1 text-warning"></i> Student Lookup
+                        </h4>
+                        <p class="small text-muted mb-0">Enter your Serial Number to search alumni records</p>
+                    </div>
+                    <form action="{% url 'student_search' %}" method="GET">
+                        <div class="mb-3">
+                            <label for="heroSerialInput" class="form-label small fw-bold text-uppercase text-secondary">Serial Number</label>
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-text bg-light"><i class="bi bi-hash text-success"></i></span>
+                                <input type="text" name="serial_number" id="heroSerialInput" class="form-control font-monospace" placeholder="e.g. ANWAR-2024-001" required>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-gold w-100 btn-lg shadow-sm">
+                            <i class="bi bi-search me-1"></i> Search Record
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STATISTICS COUNTER SECTION -->
+<div class="container stats-section">
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-people-fill"></i>
+                </div>
+                <div class="stat-number counter-value" data-target="{{ STAT_TOTAL_ALUMNI }}">{{ STAT_TOTAL_ALUMNI }}</div>
+                <div class="stat-label">Total Alumni</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-journal-bookmark-fill"></i>
+                </div>
+                <div class="stat-number counter-value" data-target="{{ STAT_TOTAL_BATCHES }}">{{ STAT_TOTAL_BATCHES }}</div>
+                <div class="stat-label">Total Batches</div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="bi bi-award-fill"></i>
+                </div>
+                <div class="stat-number counter-value" data-target="{{ STAT_ACTIVE_MEMBERS }}">{{ STAT_ACTIVE_MEMBERS }}</div>
+                <div class="stat-label">Active Members</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WELCOME & ABOUT SHORT INTRODUCTION -->
+<section class="py-5 my-4">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="position-relative">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop" class="img-fluid rounded-4 shadow-lg border border-3 border-warning" alt="College Campus">
+                    <div class="position-absolute bottom-0 end-0 bg-success text-white p-3 rounded-3 m-3 shadow-lg border border-warning">
+                        <h6 class="mb-0 fw-bold"><i class="bi bi-patch-check-fill text-warning"></i> Premier Institution</h6>
+                        <small class="text-white-50">Nilambur, Malappuram</small>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-6">
+                <div class="section-subtitle">About Anwar Alumni</div>
+                <h2 class="section-title mb-4">Preserving Excellence & Academic Legacy</h2>
+                <p class="lead text-secondary mb-3">
+                    Anwar Majmau Shariath & Dawa College Alumni Network stands as a testament to spiritual guidance, moral leadership, and academic excellence nurtured in Vidyanagar, Nilambur.
+                </p>
+                <p class="text-muted mb-4">
+                    Our network bridges past graduates and present scholars, creating avenues for lifelong mentorship, career opportunities, and collaborative support for college development programs.
+                </p>
+                
+                <div class="row g-3 mb-4">
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-3 p-3 bg-light rounded-3 border">
+                            <i class="bi bi-mortarboard fs-2 text-success"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Scholar Network</h6>
+                                <small class="text-muted">Global Alumni Base</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="d-flex align-items-center gap-3 p-3 bg-light rounded-3 border">
+                            <i class="bi bi-heart-pulse fs-2 text-warning"></i>
+                            <div>
+                                <h6 class="mb-0 fw-bold">Welfare Support</h6>
+                                <small class="text-muted">Student Scholarships</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <a href="{% url 'about' %}" class="btn btn-emerald">
+                    Learn More About Us <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LATEST NEWS & ANNOUNCEMENTS -->
+<section class="py-5 bg-light border-top border-bottom">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <div class="section-subtitle">Updates</div>
+            <h2 class="section-title">Latest News & Announcements</h2>
+        </div>
+        
+        <div class="row g-4">
+            {% if latest_news %}
+                {% for item in latest_news %}
+                <div class="col-lg-4 col-md-6">
+                    <div class="news-card">
+                        <div class="news-img-container">
+                            {% if item.image %}
+                                <img src="{{ item.image.url }}" alt="{{ item.title }}">
+                            {% else %}
+                                <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?q=80&w=800&auto=format&fit=crop" alt="News Image">
+                            {% endif %}
+                        </div>
+                        <div class="news-card-body">
+                            <div class="news-date">
+                                <i class="bi bi-calendar-event me-1"></i> {{ item.date_posted|date:"d M Y" }}
+                            </div>
+                            <h5 class="fw-bold text-success mb-2">{{ item.title }}</h5>
+                            <p class="small text-muted mb-3">{{ item.content|truncatewords:25 }}</p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-12 text-center py-4">
+                    <div class="alert alert-info d-inline-block">
+                        <i class="bi bi-info-circle me-1"></i> Announcements will appear here soon.
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- GALLERY PREVIEW -->
+<section class="py-5">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-end mb-4 flex-wrap gap-2">
+            <div>
+                <div class="section-subtitle">Campus Life</div>
+                <h2 class="section-title text-start mb-0">Gallery Highlights</h2>
+            </div>
+            <a href="{% url 'gallery' %}" class="btn btn-outline-success">
+                View Full Gallery <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+        </div>
+        
+        <div class="row g-3">
+            {% if gallery_preview %}
+                {% for img in gallery_preview %}
+                <div class="col-md-4 col-sm-6">
+                    <div class="overflow-hidden rounded-3 shadow-sm border border-2 border-light position-relative group" style="height: 220px;">
+                        <img src="{{ img.image.url }}" class="w-100 h-100 object-fit-cover transition" alt="{{ img.title }}">
+                        <div class="position-absolute bottom-0 start-0 end-0 p-3 bg-dark bg-opacity-75 text-white">
+                            <span class="small fw-semibold">{{ img.title|default:"Programme Event" }}</span>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-md-4 col-sm-6">
+                    <img src="https://images.unsplash.com/photo-1541829070764-84a7d30dd3f3?q=80&w=600&auto=format&fit=crop" class="w-100 rounded-3 shadow-sm" style="height: 220px; object-fit: cover;" alt="Gallery 1">
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=600&auto=format&fit=crop" class="w-100 rounded-3 shadow-sm" style="height: 220px; object-fit: cover;" alt="Gallery 2">
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=600&auto=format&fit=crop" class="w-100 rounded-3 shadow-sm" style="height: 220px; object-fit: cover;" alt="Gallery 3">
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- DONATION CALLOUT BANNER -->
+<section class="islamic-pattern-bg py-5 text-white text-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <i class="bi bi-heart-fill fs-1 text-warning mb-2 d-block"></i>
+                <h2 class="text-warning mb-3">Support Anwar Majmau College Development</h2>
+                <p class="lead mb-4 text-white-50">
+                    Your generous donation powers student scholarships, infrastructure, and Islamic dawa propagation programs.
+                </p>
+                <a href="{% url 'donate' %}" class="btn btn-gold btn-lg">
+                    <i class="bi bi-credit-card-2-front-fill me-2"></i> Donate & Get Instant PDF Receipt
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
