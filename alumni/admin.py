@@ -29,7 +29,7 @@ class StudentAdmin(admin.ModelAdmin):
     def photo_preview(self, obj):
         if obj.photo:
             return format_html('<img src="{}" style="width: 45px; height: 45px; object-fit: cover; border-radius: 50%; border: 2px solid #064E3B;" />', obj.photo.url)
-        return format_html('<span style="color: #94A3B8; font-style: italic;">No Photo</span>')
+        return format_html('<span style="color: #94A3B8; font-style: italic;">{}</span>', 'No Photo')
     photo_preview.short_description = "Photo"
 
 @admin.register(Donation)
